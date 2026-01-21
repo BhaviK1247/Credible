@@ -1,5 +1,4 @@
-
-#Credible 🛡️
+Credible 🛡️
 
 Fact-checking platform to verify news and fight misinformation.
 
