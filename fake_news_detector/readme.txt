@@ -1,21 +1,3 @@
-Absolutely! I’ll create a **clear README content** for your folder with **all the important commands and instructions**. The frontend developer (or anyone using it) can follow this step by step.
-
-Here’s a professional version you can include as `README.md` in your `fake_news_detector` folder:
-
----
-
-# Fake News Detector — README
-
-## Overview
-
-This is a **zero-cost, interactive fact-checking system** that can verify claims in news articles.
-It supports **URLs or raw text input** and outputs a **JSON with claim-level truth scores and final verdict**.
-
-* Fully offline after model download.
-* Uses open-source libraries and free web evidence retrieval.
-
----
-
 ## Folder Structure
 
 ```
@@ -108,4 +90,5 @@ Enter the news article URL or raw text:
     "final_verdict": "UNCERTAIN"
 }
 ```
+
 
