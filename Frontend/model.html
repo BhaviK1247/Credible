@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<title>ML Model | Credible</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+
+/* PAGE CONTAINER */
+
+.container{
+max-width:1000px;
+margin:auto;
+padding:80px 20px;
+}
+
+/* TITLE */
+
+.title{
+text-align:center;
+font-size:42px;
+margin-bottom:15px;
+}
+
+/* INTRO TEXT */
+
+.intro{
+text-align:center;
+color:#94a3b8;
+max-width:750px;
+margin:auto;
+margin-bottom:50px;
+}
+
+/* SECTION LAYOUT */
+
+.model-section{
+display:flex;
+flex-direction:column;
+gap:25px;
+}
+
+/* CARD DESIGN */
+
+.model-card{
+background:rgba(17,24,39,0.6);
+padding:25px;
+border-radius:14px;
+border:1px solid rgba(255,255,255,0.05);
+transition:0.25s;
+}
+
+/* CARD HOVER */
+
+.model-card:hover{
+transform:translateY(-5px);
+box-shadow:0 10px 30px rgba(0,0,0,0.5);
+border-color:rgba(96,165,250,0.4);
+}
+
+/* LISTS */
+
+ul{
+margin-top:10px;
+padding-left:20px;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+<h1 class="title">Machine Learning Model</h1>
+
+<p class="intro">
+The Credible system uses Artificial Intelligence and Natural Language Processing (NLP)
+to analyze news articles and detect misinformation. The platform integrates the
+Google Gemini AI model to evaluate the credibility of news content.
+</p>
+
+
+<div class="model-section">
+
+<!-- CARD 1 -->
+
+<div class="model-card">
+
+<h3>AI Model Used</h3>
+
+<p>
+Credible uses the Google Gemini AI model to analyze news text and determine
+whether the information is credible, misleading, or false. The model evaluates
+claims within the news article and identifies potential misinformation.
+</p>
+
+</div>
+
+
+<!-- CARD 2 -->
+
+<div class="model-card">
+
+<h3>Natural Language Processing (NLP)</h3>
+
+<p>
+Natural Language Processing allows the system to understand and interpret
+human language. The model analyzes sentence structure, keywords, and context
+to evaluate the credibility of the information provided.
+</p>
+
+</div>
+
+
+<!-- CARD 3 -->
+
+<div class="model-card">
+
+<h3>Analysis Workflow</h3>
+
+<ul>
+<li>User enters a news article or claim</li>
+<li>The frontend sends the request to the Flask backend</li>
+<li>The backend forwards the text to the Gemini AI model</li>
+<li>The AI analyzes the credibility of the claim</li>
+<li>The result is returned to the user interface</li>
+</ul>
+
+</div>
+
+
+<!-- CARD 4 -->
+
+<div class="model-card">
+
+<h3>Model Output</h3>
+
+<ul>
+<li><strong>Verdict:</strong> True, False, or Misleading</li>
+<li><strong>Confidence Score:</strong> Percentage showing model certainty</li>
+<li><strong>Explanation:</strong> Reason for the classification</li>
+</ul>
+
+</div>
+
+
+<!-- CARD 5 -->
+
+<div class="model-card">
+
+<h3>Benefits of AI Fact Checking</h3>
+
+<ul>
+<li>Helps detect misinformation quickly</li>
+<li>Automates credibility analysis of news</li>
+<li>Supports users in verifying online content</li>
+<li>Promotes responsible news consumption</li>
+</ul>
+
+</div>
+
+
+</div>
+
+</div>
+
+</body>
+
+</html>

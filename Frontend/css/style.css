@@ -1,0 +1,18 @@
+/* GLOBAL RESET */
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:system-ui, -apple-system, BlinkMacSystemFont;
+}
+
+/* BACKGROUND FOR ALL PAGES */
+body{
+min-height:100vh;
+background: radial-gradient(
+ellipse at bottom,
+#0b3b75 0%,
+#05070c 60%
+);
+color:white;
+}
