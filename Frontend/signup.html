@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Signup | Credible</title>
+
+<!-- Default global CSS -->
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+/* CENTER CONTAINER */
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* CARD */
+.auth-card {
+  background: rgba(17, 24, 39, 0.7);
+  backdrop-filter: blur(14px);
+  padding: 30px;
+  border-radius: 20px;
+  width: 340px;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  text-align: center;
+}
+
+/* TITLE */
+.auth-card h2 {
+  margin-bottom: 20px;
+}
+
+/* INPUT */
+.auth-card input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+}
+
+/* BUTTON */
+.auth-card button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  background: #3b82f6;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.auth-card button:hover {
+  background: #2563eb;
+}
+
+/* LOGIN LINK */
+.auth-card p {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.auth-card a {
+  color: #60a5fa;
+  text-decoration: none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="auth-container">
+  <div class="auth-card">
+
+    <h2>Create Account</h2>
+
+    <input type="text" id="name" placeholder="Full Name">
+    <input type="email" id="email" placeholder="Email Address">
+    <input type="password" id="password" placeholder="Password">
+
+    <button onclick="signup()">Sign Up</button>
+
+    <p>Already have an account? <a href="login.html">Login</a></p>
+
+  </div>
+</div>
+
+<script>
+function signup() {
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value.trim();
+
+  if (!name || !email || !password) {
+    alert("Please fill all fields");
+    return;
+  }
+
+  // Save user in localStorage
+  const user = { name, email, password };
+  localStorage.setItem("user", JSON.stringify(user));
+
+  alert("Account created successfully!");
+
+  // Redirect to login
+  window.location.href = "login.html";
+}
+</script>
+
+</body>
+</html>

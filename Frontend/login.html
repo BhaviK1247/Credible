@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Login | Credible</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.auth-card {
+  background: rgba(17, 24, 39, 0.7);
+  backdrop-filter: blur(14px);
+  padding: 30px;
+  border-radius: 20px;
+  width: 340px;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  text-align: center;
+}
+
+.auth-card h2 {
+  margin-bottom: 20px;
+}
+
+.auth-card input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+}
+
+.auth-card button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  background: #3b82f6;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.auth-card button:hover {
+  background: #2563eb;
+}
+
+.auth-card p {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.auth-card a {
+  color: #60a5fa;
+  text-decoration: none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="auth-container">
+  <div class="auth-card">
+
+    <h2>Login</h2>
+
+    <input type="email" id="email" placeholder="Email Address">
+    <input type="password" id="password" placeholder="Password">
+
+    <button onclick="login()">Login</button>
+
+    <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+
+  </div>
+</div>
+
+<script>
+function login() {
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value.trim();
+
+  const storedUser = JSON.parse(localStorage.getItem("user"));
+
+  if (!storedUser) {
+    alert("No user found. Please signup first.");
+    return;
+  }
+
+  if (email === storedUser.email && password === storedUser.password) {
+    localStorage.setItem("loggedIn", "true");
+    alert("Login successful!");
+
+    window.location.href = "dashboard.html";
+  } else {
+    alert("Invalid email or password");
+  }
+}
+</script>
+
+</body>
+</html>
+

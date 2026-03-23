@@ -1,248 +1,441 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<title>Dashboard | Credible</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Dashboard | Credible</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-/* ===== RESET ===== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont;
-}
+  <style>
+    /* ===== RESET ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont;
+    }
 
-body {
-  height: 100vh;
-  background: radial-gradient(ellipse at bottom, #0b3b75 0%, #05070c 60%);
-  color: white;
-}
+    body {
+      height: 100vh;
+      background: radial-gradient(ellipse at bottom, #0b3b75 0%, #05070c 60%);
+      color: white;
+    }
 
-/* ===== DASHBOARD LAYOUT ===== */
-.dashboard {
-  display: flex;
-  height: 100vh;
-}
+    /* ===== DASHBOARD LAYOUT ===== */
+    .dashboard {
+      display: flex;
+      height: 100vh;
+    }
 
-/* ===== SIDEBAR ===== */
-.sidebar {
-  width: 260px;
-  background: rgba(17, 24, 39, 0.85);
-  backdrop-filter: blur(14px);
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-}
+    /* ===== SIDEBAR ===== */
+    .sidebar {
+      width: 260px;
+      background: rgba(17, 24, 39, 0.85);
+      backdrop-filter: blur(14px);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+    }
 
-.sidebar h2 {
-  margin-bottom: 20px;
-}
+    .sidebar h2 {
+      margin-bottom: 20px;
+    }
 
-.new-chat {
-  background: #3b82f6;
-  border: none;
-  padding: 10px;
-  border-radius: 10px;
-  color: white;
-  cursor: pointer;
-  margin-bottom: 20px;
-}
+    .new-chat {
+      background: #3b82f6;
+      border: none;
+      padding: 10px;
+      border-radius: 10px;
+      color: white;
+      cursor: pointer;
+      margin-bottom: 20px;
+    }
 
-.history {
-  flex: 1;
-  overflow-y: auto;
-}
+    .history {
+      flex: 1;
+      overflow-y: auto;
+    }
 
-.history-title {
-  font-size: 13px;
-  color: #9ca3af;
-  margin-bottom: 10px;
-}
+    .history-title {
+      font-size: 13px;
+      color: #9ca3af;
+      margin-bottom: 10px;
+    }
 
-.history-item {
-  padding: 8px;
-  border-radius: 8px;
-  margin-bottom: 6px;
-  cursor: pointer;
-}
+    .history-item {
+      padding: 8px;
+      border-radius: 8px;
+      margin-bottom: 6px;
+      cursor: pointer;
+    }
 
-.history-item:hover {
-  background: rgba(255,255,255,0.08);
-}
+    .history-item:hover {
+      background: rgba(255, 255, 255, 0.08);
+    }
 
-/* ===== MAIN AREA ===== */
-.dashboard-main {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  padding: 40px;
-}
+    /* ===== MAIN AREA ===== */
+    .dashboard-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 40px;
+    }
 
-.dashboard-main h1 {
-  font-size: 36px;
-  margin-bottom: 20px;
-}
+    .dashboard-main h1 {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
 
-/* ===== CHAT AREA ===== */
-.chat-area {
-  flex: 1;
-  overflow-y: auto;
-  padding-bottom: 20px;
-}
+    /* ===== CHAT AREA ===== */
+    .chat-area {
+      flex: 1;
+      overflow-y: auto;
+      padding-bottom: 20px;
+    }
 
-/* ===== RESULT CARD ===== */
-.result-card {
-  background: rgba(17, 24, 39, 0.7);
-  backdrop-filter: blur(12px);
-  border-radius: 16px;
-  padding: 14px;
-  margin-bottom: 14px;
-  border-left: 4px solid #22c55e;
-  animation: slideUp 0.4s ease;
-}
+    /* ===== RESULT CARD ===== */
+    .result-card {
+      background: rgba(17, 24, 39, 0.7);
+      backdrop-filter: blur(12px);
+      border-radius: 16px;
+      padding: 14px;
+      margin-bottom: 14px;
+      border-left: 4px solid #22c55e;
+      animation: slideUp 0.4s ease;
+    }
 
-.result-card.fake {
-  border-left: 4px solid #ef4444;
-}
+    .result-card.fake {
+      border-left: 4px solid #ef4444;
+    }
 
-.result-card.misleading {
-  border-left: 4px solid #facc15;
-}
+    .result-card.misleading {
+      border-left: 4px solid #facc15;
+    }
 
-/* ===== PROMPT BOX ===== */
-.prompt-box {
-  background: rgba(17, 24, 39, 0.6);
-  backdrop-filter: blur(14px);
-  border-radius: 16px;
-  padding: 14px;
-  border: 1px solid rgba(255,255,255,0.08);
-}
+    /* ===== PROMPT BOX ===== */
+    .prompt-box {
+      background: rgba(17, 24, 39, 0.6);
+      backdrop-filter: blur(14px);
+      border-radius: 16px;
+      padding: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
 
-.prompt-box textarea {
-  width: 100%;
-  height: 80px;
-  background: transparent;
-  border: none;
-  color: white;
-  font-size: 16px;
-  resize: none;
-  outline: none;
-  margin-bottom: 10px;
-}
+    .prompt-box textarea {
+      width: 100%;
+      height: 80px;
+      background: transparent;
+      border: none;
+      color: white;
+      font-size: 16px;
+      resize: none;
+      outline: none;
+      margin-bottom: 10px;
+    }
 
-.prompt-box button {
-  background: #3b82f6;
-  border: none;
-  padding: 10px 16px;
-  border-radius: 10px;
-  color: white;
-  cursor: pointer;
-  font-weight: 600;
-}
+    .prompt-box button {
+      background: #3b82f6;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 10px;
+      color: white;
+      cursor: pointer;
+      font-weight: 600;
+    }
 
-/* ===== ANIMATION ===== */
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+    .logout-btn {
+      background: #2563eb;
+      border: none;
+      padding: 10px;
+      border-radius: 10px;
+      color: white;
+      cursor: pointer;
+      margin-bottom: 20px;
+    }
 
-/* ===== RESPONSIVE ===== */
-@media (max-width: 768px) {
-  .sidebar { display: none; }
-  .dashboard-main { padding: 20px; }
-}
-</style>
+    .new-chat.active {
+      background: #2563eb;
+    }
+
+    .history-item.active {
+      background: rgba(96, 165, 250, 0.2);
+      color: #60a5fa;
+    }
+
+    /* ===== ANIMATION ===== */
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .sidebar {
+        display: none;
+      }
+
+      .dashboard-main {
+        padding: 20px;
+      }
+
+      .prompt-box textarea {
+        display: block;
+      }
+    }
+
+    .nav-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: none;
+      padding: 10px;
+      border-radius: 10px;
+      color: white;
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+
+    .nav-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="dashboard">
+  <div class="dashboard">
 
-  <!-- SIDEBAR -->
-  <aside class="sidebar">
-    <h2>📰 Credible</h2>
-    <button class="new-chat">New Analysis</button>
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <h2 onclick="goHome()" style="cursor:pointer;">📰 Credible</h2>
 
-    <div class="history">
-      <p class="history-title">Your Searches</p>
-    </div>
-  </aside>
 
-  <!-- MAIN -->
-  <main class="dashboard-main">
-    <h1>Fake News Detection</h1>
+      <button class="logout-btn" onclick="logout()">Logout</button>
+      <button class="new-chat active">New Analysis</button>
 
-    <div id="chatArea" class="chat-area"></div>
+      <div class="history">
+        <p class="history-title">Your Searches</p>
+      </div>
+    </aside>
 
-    <div class="prompt-box">
-      <textarea id="newsInput"
-        placeholder="Paste a news article or claim here..."></textarea>
-      <button id="detectBtn">Detect →</button>
-    </div>
-  </main>
+    <!-- MAIN -->
+    <main class="dashboard-main">
+      <h1>Fake News Detection</h1>
 
-</div>
+      <div id="chatArea" class="chat-area"></div>
 
-<script>
-const input = document.getElementById("newsInput");
-const detectBtn = document.getElementById("detectBtn");
-const chatArea = document.getElementById("chatArea");
-const newChatBtn = document.querySelector(".new-chat");
+      <div class="prompt-box">
+        <textarea id="newsInput" placeholder="Paste a news article or claim here..."></textarea>
+        <button id="detectBtn">Detect →</button>
+      </div>
+    </main>
 
-detectBtn.addEventListener("click", async () => {
-  const text = input.value.trim();
-  if (!text) return;
+  </div>
 
-  detectBtn.textContent = "Analyzing...";
-  detectBtn.disabled = true;
-  input.disabled = true;
+  <script>
+    const input = document.getElementById("newsInput");
+    const detectBtn = document.getElementById("detectBtn");
+    const chatArea = document.getElementById("chatArea");
+    const newChatBtn = document.querySelector(".new-chat");
 
-  try {
-    const res = await fetch("http://127.0.0.1:5000/predict", {
-      method: "POST",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify({ text })
+    // ================= DETECT =================
+    detectBtn.addEventListener("click", async () => {
+      const text = input.value.trim();
+      if (!text) return;
+
+      detectBtn.textContent = "Analyzing...";
+      detectBtn.disabled = true;
+      input.disabled = true;
+
+      try {
+        const res = await fetch("http://127.0.0.1:5000/predict", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ news: text })
+        });
+
+        const data = await res.json();
+
+        showResult(data.verdict, data.confidence, data.explanation);
+        saveToHistory(text, data);
+
+      } catch (err) {
+        showResult("Error", 0, "Unable to connect to server.");
+      } finally {
+        detectBtn.textContent = "Detect →";
+        detectBtn.disabled = false;
+        input.disabled = false;
+        input.value = "";
+      }
     });
 
-    const data = await res.json();
-    showResult(data.verdict, data.confidence, data.explanation);
+    // ================= SHOW RESULT =================
+    function showResult(verdict, confidence, explanation) {
+      const card = document.createElement("div");
 
-  } catch (err) {
-    showResult("Error", 0, "Unable to connect to server.");
-  } finally {
-    detectBtn.textContent = "Detect →";
-    detectBtn.disabled = false;
-    input.disabled = false;
-    input.value = "";
-  }
-});
+      let className = "";
+      if (verdict === "False") className = "fake";
+      if (verdict === "Misleading") className = "misleading";
 
-function showResult(verdict, confidence, explanation) {
-  const card = document.createElement("div");
-
-  let className = "";
-  if (verdict === "False") className = "fake";
-  if (verdict === "Misleading") className = "misleading";
-
-  card.className = `result-card ${className}`;
-  card.innerHTML = `
+      card.className = `result-card ${className}`;
+      card.innerHTML = `
     <strong>${verdict}</strong>
     <p>Confidence: ${confidence}%</p>
     <p>${explanation}</p>
   `;
 
-  chatArea.appendChild(card);
-  chatArea.scrollTop = chatArea.scrollHeight;
-}
+      chatArea.appendChild(card);
+      chatArea.scrollTop = chatArea.scrollHeight;
+    }
 
-newChatBtn.addEventListener("click", () => {
-  chatArea.innerHTML = "";
-  input.value = "";
-  input.focus();
-});
-</script>
+    // ================= GENERATE TITLE =================
+    function generateTitle(text) {
+      if (!text) return "Untitled";
 
+      if (text.startsWith("http")) {
+        return "News Article";
+      }
+
+      const words = text.split(" ");
+      return words.slice(0, 4).join(" ") + "...";
+    }
+
+    // ================= SAVE HISTORY =================
+    function saveToHistory(query, result) {
+      let history = JSON.parse(localStorage.getItem("history")) || [];
+
+      history.unshift({
+        id: Date.now(),
+        title: generateTitle(query),
+        messages: [
+          {
+            query,
+            result
+          }
+        ]
+      });
+
+      if (history.length > 10) history.pop();
+
+      localStorage.setItem("history", JSON.stringify(history));
+
+      renderHistory();
+    }
+
+    // ================= RENDER HISTORY =================
+    function renderHistory() {
+      const historyDiv = document.querySelector(".history");
+      historyDiv.innerHTML = "";
+
+      const title = document.createElement("p");
+      title.className = "history-title";
+      title.innerText = "Your Searches";
+      historyDiv.appendChild(title);
+
+      let history = JSON.parse(localStorage.getItem("history")) || [];
+
+      history.forEach((item, index) => {
+        const div = document.createElement("div");
+        div.className = "history-item";
+
+        const text = document.createElement("span");
+
+        let titleText;
+        if (item.title) {
+          titleText = item.title;
+        } else if (item.messages && item.messages[0]) {
+          titleText = generateTitle(item.messages[0].query);
+        } else {
+          titleText = "Untitled";
+        }
+
+        text.innerText = titleText;
+
+        // Delete button
+        const delBtn = document.createElement("button");
+        delBtn.innerText = "❌";
+        delBtn.style.float = "right";
+        delBtn.style.background = "transparent";
+        delBtn.style.border = "none";
+        delBtn.style.cursor = "pointer";
+        delBtn.style.color = "#ef4444";
+
+        delBtn.onclick = (e) => {
+          e.stopPropagation();
+          deleteHistory(index);
+        };
+
+        // Click to open chat
+        div.onclick = () => {
+          chatArea.innerHTML = "";
+
+          item.messages.forEach(msg => {
+            showResult(
+              msg.result.verdict,
+              msg.result.confidence,
+              msg.result.explanation
+            );
+          });
+
+          document.querySelectorAll(".history-item").forEach(i => i.classList.remove("active"));
+          div.classList.add("active");
+        };
+
+        div.appendChild(text);
+        div.appendChild(delBtn);
+        historyDiv.appendChild(div);
+      });
+    }
+
+    // ================= DELETE =================
+    function deleteHistory(index) {
+      let history = JSON.parse(localStorage.getItem("history")) || [];
+
+      history.splice(index, 1);
+
+      localStorage.setItem("history", JSON.stringify(history));
+
+      renderHistory();
+    }
+
+    // ================= NEW CHAT =================
+    newChatBtn.addEventListener("click", () => {
+      chatArea.innerHTML = "";
+      input.value = "";
+      input.disabled = false;
+      detectBtn.disabled = false;
+      input.focus();
+
+      document.querySelectorAll(".history-item").forEach(i => i.classList.remove("active"));
+    });
+
+    // ================= NAVIGATION =================
+    function goHome() {
+      window.location.href = "index.html";
+    }
+
+    function logout() {
+      localStorage.removeItem("loggedIn");
+      window.location.href = "login.html";
+    }
+
+    // ================= INIT =================
+    renderHistory();
+
+    // Check login
+    if (localStorage.getItem("loggedIn") !== "true") {
+      window.location.href = "login.html";
+    }
+
+    function goHome() {
+      window.location.href = "index.html";
+    }
+  </script>
 </body>
+
 </html>

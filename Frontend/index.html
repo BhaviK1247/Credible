@@ -6,25 +6,16 @@
   <title>Credible</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="css/style.css">
-  <style>
-    /* RESET */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont;
-    }
 
-    /* BODY */
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: system-ui; }
+
     body {
       min-height: 100vh;
-      background: radial-gradient(ellipse at bottom,
-          #0b3b75 0%,
-          #05070c 60%);
+      background: radial-gradient(ellipse at bottom,#0b3b75 0%,#05070c 60%);
       color: white;
     }
 
-    /* NAVBAR */
     .navbar {
       display: flex;
       justify-content: space-between;
@@ -32,12 +23,8 @@
       padding: 20px 40px;
     }
 
-    .logo {
-      font-weight: 700;
-      font-size: 18px;
-    }
+    .logo { font-weight: 700; font-size: 18px; }
 
-    /* NAV LINKS */
     .navbar nav a {
       margin: 0 12px;
       color: #cbd5e1;
@@ -45,45 +32,34 @@
       font-size: 14px;
     }
 
-    .navbar nav a:hover {
-      color: #ffffff;
-    }
+    .navbar nav a:hover { color: #fff; }
 
-    /* AUTH BUTTONS */
-    .auth button {
+    .auth { display: flex; align-items: center; }
+
+    .ghost, .primary {
+      display: inline-block;
+      text-decoration: none;
       margin-left: 10px;
       border-radius: 8px;
-      cursor: pointer;
-      border: none;
-    }
-
-    .ghost {
-      background: transparent;
-      color: #cbd5e1;
       padding: 8px 12px;
     }
+
+    .ghost { color: #cbd5e1; }
 
     .primary {
       background: #3b82f6;
       color: white;
-      padding: 8px 14px;
       font-weight: 600;
     }
 
-    /* HERO SECTION */
     .hero {
       text-align: center;
       padding: 80px 20px;
     }
 
-    .hero h1 {
-      font-size: 56px;
-      font-weight: 800;
-    }
+    .hero h1 { font-size: 56px; font-weight: 800; }
 
-    .hero h1 span {
-      color: #60a5fa;
-    }
+    .hero h1 span { color: #60a5fa; }
 
     .hero p {
       margin-top: 12px;
@@ -91,159 +67,134 @@
       font-size: 18px;
     }
 
-    /* PROMPT BOX */
     .prompt-box {
-
       margin: 40px auto;
       max-width: 680px;
       padding: 18px;
-
-      background: rgba(17, 24, 39, 0.6);
+      background: rgba(17,24,39,0.6);
       backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-
       border-radius: 35px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-
-      box-shadow:
-        0 10px 30px rgba(0, 0, 0, 0.4),
-        inset 0 1px 0 rgba(255, 255, 255, 0.06);
-
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
 
-    /* PROMPT FOCUS EFFECT */
-    .prompt-box:focus-within {
-      border-color: rgba(96, 165, 250, 0.4);
-      box-shadow:
-        0 18px 45px rgba(0, 0, 0, 0.6),
-        0 0 0 1px rgba(96, 165, 250, 0.15);
-    }
-
-    /* TEXTAREA */
-    .prompt-box textarea {
+    textarea {
       width: 100%;
       height: 80px;
       background: transparent;
       border: none;
       color: white;
-      font-size: 16px;
-      resize: none;
       outline: none;
     }
 
-    /* ACTIONS */
-    .prompt-actions {
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      margin-top: 14px;
-    }
-
-    /* DETECT BUTTON */
     .build {
       background: #3b82f6;
       color: white;
       padding: 10px 18px;
       border-radius: 10px;
-      font-weight: 600;
-      cursor: pointer;
       border: none;
-    }
-
-    /* BUTTON HOVER */
-    .build:hover {
-      background: #2563eb;
-    }
-
-    /* FOOTER */
-    footer {
-      text-align: center;
-      padding: 20px;
-      color: #64748b;
-      font-size: 14px;
-    }
-
-    /* RESPONSIVE */
-    @media (max-width: 768px) {
-
-      .hero h1 {
-        font-size: 40px;
-      }
-
-      .navbar nav {
-        display: none;
-      }
-
+      cursor: pointer;
     }
   </style>
-
 </head>
 
 <body>
 
-  <!-- Navbar -->
-  <header class="navbar">
-    <div class="logo">📰 Credible</div>
+<header class="navbar">
+  <div class="logo">📰 Credible</div>
 
-    <nav>
-      <a href="how_it_works.html">How It Works</a>
-      <a href="model.html">ML Model</a>
-      <a href="dataset.html">Dataset</a>
-      <a href="team.html">Team</a>
-    </nav>
+  <nav>
+    <a href="how_it_works.html">How It Works</a>
+    <a href="model.html">ML Model</a>
+    <a href="dataset.html">Dataset</a>
+    <a href="team.html">Team</a>
+  </nav>
 
-    <div class="auth">
-      <button class="ghost">Sign in</button>
-      <button class="primary">Get started</button>
-    </div>
-  </header>
+  <!-- ✅ Dynamic Auth Section -->
+  <div class="auth" id="authSection"></div>
+</header>
 
-  <!-- Hero -->
-  <main class="hero">
+<main class="hero">
+  <h1>Is This News <span>Credible</span>?</h1>
 
+  <p>An AI-powered system that analyzes news content using NLP to classify it as fake or credible.</p>
 
-    <h1>
-      Is This News <span>Credible</span>?
-    </h1>
+  <div class="prompt-box">
+    <textarea id="newsInput" placeholder="Paste news here..."></textarea>
 
-    <p>An AI-powered system that analyzes news content using NLP to classify it as fake or credible.</p>
-
-    <div class="prompt-box">
-      <textarea placeholder="Paste a news article link or text here to check its credibility..."></textarea>
-
-
-
-
-
-
-
-
-      <div class="prompt-actions">
-
-        <button class="build">Detect →</button>
-
-      </div>
+    <div style="margin-top:10px;">
+      <button class="build">Detect →</button>
     </div>
 
+    <div id="result"></div>
+  </div>
+</main>
 
-  </main>
+<script>
+// ================= NAVBAR =================
+function loadNavbar() {
+  const auth = document.getElementById("authSection");
 
-  <script>
-    const textarea = document.querySelector("textarea");
-    const buildBtn = document.querySelector(".build");
+  const isLoggedIn = localStorage.getItem("loggedIn");
+  const user = localStorage.getItem("currentUser");
 
-    buildBtn.addEventListener("click", () => {
-      if (!textarea.value.trim()) {
+  if (isLoggedIn === "true" && user) {
+    auth.innerHTML = `
+      <span>👤 ${user}</span>
+      <button onclick="logout()">Logout</button>
+    `;
+  } else {
+    auth.innerHTML = `
+      <a href="login.html" class="ghost">Sign in</a>
+      <a href="signup.html" class="primary">Get started</a>
+    `;
+  }
+}
 
-        alert("Please enter a news article or link.");
-        return;
-      }
-      alert("Analyzing news credibility...");
+function logout() {
+  localStorage.removeItem("loggedIn");
+  localStorage.removeItem("currentUser");
+  location.reload();
+}
+
+// ================= DETECT =================
+const textarea = document.getElementById("newsInput");
+const buildBtn = document.querySelector(".build");
+
+buildBtn.addEventListener("click", async () => {
+  const newsText = textarea.value.trim();
+
+  if (!newsText) {
+    alert("Enter news");
+    return;
+  }
+
+  buildBtn.innerText = "Analyzing...";
+  buildBtn.disabled = true;
+
+  try {
+    const res = await fetch("http://127.0.0.1:5000/predict", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({ news: newsText })
     });
 
+    const data = await res.json();
 
-  </script>
+    document.getElementById("result").innerHTML = `
+      <h3>${data.verdict}</h3>
+      <p>${data.confidence}%</p>
+      <p>${data.explanation}</p>
+    `;
+  } catch {
+    alert("Error");
+  }
+
+  buildBtn.innerText = "Detect →";
+  buildBtn.disabled = false;
+});
+
+// INIT
+loadNavbar();
+</script>
 
 </body>
 <footer style="text-align:center; padding:20px; color:#64748b; font-size:14px;">
@@ -268,6 +219,5 @@
     View on GitHub
   </a>
 </footer>
-
 
 </html>

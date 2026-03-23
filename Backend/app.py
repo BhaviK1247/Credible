@@ -3,12 +3,14 @@ from flask_cors import CORS
 import fact_checker
 
 app = Flask(__name__)
-CORS(app)  # allow frontend to call backend
+CORS(app)
 
 @app.route("/predict", methods=["POST"])
 def predict():
     data = request.get_json()
-    text = data.get("text", "")
+    print("Received:", data)  # DEBUG
+
+    text = data.get("news", "")  # ✅ FIXED
 
     if not text:
         return jsonify({"error": "No text provided"}), 400
