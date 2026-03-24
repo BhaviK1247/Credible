@@ -8,9 +8,9 @@ CORS(app)
 @app.route("/predict", methods=["POST"])
 def predict():
     data = request.get_json()
-    print("Received:", data)  # DEBUG
+    print("Received:", data)  
 
-    text = data.get("news", "")  # ✅ FIXED
+    text = data.get("news", "")  
 
     if not text:
         return jsonify({"error": "No text provided"}), 400

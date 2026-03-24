@@ -4,16 +4,16 @@ import re
 import os
 from dotenv import load_dotenv
 
-# Load environment variables
+
 load_dotenv()
 
-# Get API key from .env
+
 API_KEY = os.getenv("GEMINI_API_KEY")
 
-# Configure API
+
 genai.configure(api_key=API_KEY)
 
-# Load model
+
 model = genai.GenerativeModel("models/gemini-2.5-flash")
 
 def run_fact_checker(news_text):
@@ -39,7 +39,7 @@ News:
 
     raw_text = response.text.strip()
 
-    # Clean markdown formatting
+    
     raw_text = re.sub(r"```json|```", "", raw_text).strip()
 
     try:
