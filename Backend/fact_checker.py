@@ -1,53 +1,49 @@
-import google.generativeai as genai
+from google import genai
 import json
 import re
 import os
 from dotenv import load_dotenv
 
-
 load_dotenv()
 
-
-API_KEY = os.getenv("GEMINI_API_KEY")
-
-
-genai.configure(api_key=API_KEY)
-
-
-model = genai.GenerativeModel("models/gemini-2.5-flash")
+client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
 def run_fact_checker(news_text):
-    prompt = f"""
-You are a fact-checking AI.
-
-Analyze the following news and respond ONLY in valid JSON format:
-
-{{
-  "verdict": "True | False | Misleading",
-  "confidence": number between 0 and 100,
-  "explanation": "short explanation"
-}}
-
-News:
-\"\"\"{news_text}\"\"\"
-"""
-
-    response = model.generate_content(
-        prompt,
-        generation_config={"temperature": 0}
-    )
-
-    raw_text = response.text.strip()
-
-    
-    raw_text = re.sub(r"```json|```", "", raw_text).strip()
-
     try:
-        result = json.loads(raw_text)
-        return result
-    except json.JSONDecodeError:
+        prompt = f"""
+        You are a strict JSON generator.
+
+        Return ONLY valid JSON in this exact format:
+
+        {{
+          "verdict": "True or False or Misleading",
+          "confidence": number,
+          "explanation": "short explanation"
+        }}
+
+        Do NOT add any extra text, explanation, or formatting.
+
+        News:
+        \"\"\"{news_text}\"\"\"
+        """
+
+        response = client.models.generate_content(
+            model="gemini-1.5-pro",
+            contents=prompt
+        )
+
+        raw_text = response.text.strip()
+
+        match = re.search(r"\{.*\}", raw_text, re.DOTALL)
+        if match:
+            raw_text = match.group(0)
+
+        return json.loads(raw_text)
+
+    except Exception as e:
+        print("ERROR:", e)
         return {
             "verdict": "Misleading",
             "confidence": 50,
-            "explanation": "Unable to parse model response reliably."
+            "explanation": "AI service temporarily unavailable."
         }
